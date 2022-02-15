@@ -1,0 +1,28 @@
+SELECT
+	MONTH,
+	amount,
+	id,
+	rn,
+	cnt
+FROM
+	(
+		SELECT
+			*,
+			dense_rank() over (
+				PARTITION by strftime('%Y-%m', t.date)
+				ORDER BY
+					t.amount
+			) AS rn,
+			strftime('%Y-%m', t.date) AS MONTH,
+			count(*) over (
+				PARTITION by strftime('%Y-%m', t.date)
+				ORDER BY
+					t.amount
+			) AS cnt,
+			strftime('%Y-%m', t.date) AS MONTH
+		FROM
+			semrush_bank t
+	) t
+ORDER BY
+	t.date ASC -- WHERE
+	-- 	rn < cnt
