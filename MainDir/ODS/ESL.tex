@@ -1,0 +1,29 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage[margin=0.25in]{geometry}
+\usepackage{pgfplots}
+\usepackage{listings}
+\pgfplotsset{width=10cm,compat=1.9}
+\lstset{language=python, keywordstyle={\color{black}}}
+% We will externalize the figures
+\usepgfplotslibrary{external}
+\tikzexternalize
+
+\title{ESL notes}
+\begin{document}
+\alpha
+Show that $F$-statistics for dropping a single coeﬃcient from a model is equal to the square of the corresponding $z$-score
+$$F=\frac{(RSS_0-RSS_1)/(p_0-p_1)}{RSS_1/(N-p_1-1)}$$
+$$ z_j = \frac{\hat{\beta_j} }{\hat{\sigma}\sqrt{v_j} }$$
+where $v_j$ is $ j$th diagonal element of $(\mathbf{X^T} \mathbf{X})^{-1}$
+$$RSS(\beta)=(\mathbf{y}-\mathbf{X}\beta)^T(\mathbf{y}-\mathbf{X}\beta) $$
+\begin{equation}
+    \beta = (\mathbf{X^T} \mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}
+    \label{eq:}
+\end{equation} 
+\end{document}
