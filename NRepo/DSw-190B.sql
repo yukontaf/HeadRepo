@@ -1,5 +1,6 @@
 WITH row_n AS (
     SELECT t.*,
+           date_trunc('month', t.date)                                 as payment_month,
            row_number() over (
                PARTITION by date_trunc('month', t.date)
                ORDER BY
@@ -12,9 +13,10 @@ WITH row_n AS (
                )                                                       AS cnt,
            date_trunc('month', t.date)                                 AS MONTH,
            sum(amount) over (PARTITION by date_trunc('month', t.date)) AS month_sum
-    FROM semrush_bank t
+    FROM payments t
 )
 SELECT tt.id,
+       tt.payment_month,
        tt.date,
        tt.amount,
        tt.month_sum
