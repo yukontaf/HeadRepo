@@ -1,0 +1,128 @@
+---
+title: "Synthetical Payments"
+output: html_document
+---
+
+```{r load packages}
+pkgs = c('dplyr', 'ggplot2', 'odbc', 'DBI', 'tidyverse', 'learningr', 'reshape2')
+invisible(lapply(pkgs, library, character.only = T))
+
+```
+
+```{r}
+data("deer_endocranial_volume", package = "learningr")
+```
+
+position the caret at any line or the code chunk, then click "+".
+
+The code chunk appears:
+
+```{r}
+deer_wide <- deer_endocranial_volume[, 1:5]
+deer_long <- melt(deer_wide, id.vars = "SkullID")
+head(deer_long)
+```
+
+```{r connection}
+con <- DBI::dbConnect(odbc::odbc(),
+                      driver = "/usr/local/Cellar/psqlodbc/13.02.0000/lib/psqlodbcw.so",
+                      database = "yukontaf",
+                      UID = 'glebsokolov',
+                      host = "localhost",
+                      port = 5432)
+
+```
+
+```{r format date}
+df <- dbGetQuery(con, "SELECT * FROM synthetical_payments")
+df$transactionTime <- as.POSIXct(as.numeric(as.character(df$transactionTime)), origin = "1970-01-01")
+df$date <- as.Date(as.POSIXct(df$transactionTime, format = '%d-%B-%Y'))
+df <- as_tibble(df)
+
+```
+
+```{r grouped by date&product}
+df1 <- df %>%
+  group_by(date, product) %>%
+  summarise(n = n())
+```
+
+```{r grouped by date}
+df2 <- df %>%
+  ungroup() %>%
+  group_by(date) %>%
+  summarise(n = n())
+```
+
+```{r grouped by &date&period&product}
+df3 <- group_by(df, period, product) %>% summarise(n = n())
+df4 <- df %>%
+  group_by(date, period) %>%
+  summarise(n = n())
+```
+
+```{r cut payments}
+df$amount.bin <- cut(df$amount, breaks = c(0, 500, 1000, 2000, 5000, 100000), include.lowest = T, labels = c('0-500', '500-1000', '1000-2000', '2000-5000', '5000-100000'))
+
+```
+
+```{r group by payment bin}
+df %>% group_by(amount.bin) %>% summarise(n=n())
+
+```
+
+
+```{r drop outliers}
+outliers <- df[df$amount>5000,'amount']
+x <- df
+x <- subset(x, x
+            $amount<5000)
+
+```
+
+
+```{sql last payed product, connection=con, output.var=dff}
+SELECT sp."userId",
+       sp."product"
+FROM
+  (SELECT "userId",
+          max("transactionTime")
+   FROM synthetical_payments
+   GROUP BY "userId") AS t
+LEFT JOIN synthetical_payments AS sp ON (t."max" = sp."transactionTime"
+                                         AND t."userId" = sp."userId")
+```
+
+```{sql last payed product, connection=con, output.var=dff}
+
+```
+
+
+```{r}
+dff %>% count(product)
+```
+1. Попробовать кластеризовать (иерархически и нет)
+```{r}
+tempd = tempdir()
+tempf = tempfile('salaries', fileext = '.zip')
+link = 'https://data.cityofchicago.org/api/views/xzkq-xp2w/rows.csv?accessType=DOWNLOAD'
+download.file(link, tempf)
+
+library(R.utils)
+unzip(tempf, exdir=tempd)
+files <- list.files(path = tempd,
+                    pattern = "*.csv",
+                    full.names = TRUE)
+t <- lapply(files, read_csv)
+
+```
+
+```{r}
+ggplot(data=x, aes(product, amount)) + geom_violin() + ylim(0, 2000)
+```
+
+```{r}
+x_tab <- CrossTable(x$billingCountry, x$product, prop.c=FALSE, prop.chisq=FALSE, prop.t=FALSE)
+x_tab$tab
+```
+

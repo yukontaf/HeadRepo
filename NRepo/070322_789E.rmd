@@ -1,0 +1,20 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+pkgs = c('dplyr', 'ggplot2', 'odbc', 'DBI', 'tidyverse', 'learningr', 'reshape2')
+invisible(lapply(pkgs, library, character.only = T))
+load('/Users/glebsokolov/Library/Application Support/JetBrains/DataSpell2021.3/projects/workspace/connection.rda')
+```
+
+Type any R code in the chunk, for example:
+```{r}
+df <- dbGetQuery(con, "SELECT * FROM synthetical_payments")
+df$transactionTime <- as.POSIXct(as.numeric(as.character(df$transactionTime)), origin = "1970-01-01")
+df$date <- as.Date(as.POSIXct(df$transactionTime, format = '%d-%B-%Y'))
+```
+
+Now, click the **Run** button on the chunk toolbar to [execute](https://www.jetbrains.com/help/pycharm/r-markdown.html#run-r-code) the chunk code. The result should be placed under the chunk.
+Click the **Knit and Open Document** to build and preview an output.

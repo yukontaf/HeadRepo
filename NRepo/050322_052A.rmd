@@ -1,0 +1,47 @@
+---
+title: "Data Preprocessing"
+output: html_document
+---
+
+```{r}
+# Process the missing values
+setwd('/Users/glebsokolov/Downloads')
+library(caTools)
+df = read.csv('Data.csv')
+df$Age = ifelse(is.na(df$Age), ave(df$Age, FUN = function(x) mean(x, na.rm = TRUE)), df$Age)
+df$Salary = ifelse(is.na(df$Salary), ave(df$Salary, FUN = function(x) mean(x, na.rm = TRUE)), df$Salary)
+```
+```{sql, connection=con, output.var="dff"}
+select * from airbnb limit 50
+```
+```{r}
+library(DBI)
+library(dplyr)
+library(dbplyr)
+library(odbc)
+load('connection.rda')
+```
+
+
+
+
+
+```{r}
+# Categorical Encoding
+df$Country = factor(df$Country, levels = c('France', 'Spain', 'Germany'), labels = c(1, 2, 3))
+df$Purchased = factor(df$Purchased, levels = c('No', 'Yes'), labels = c(0, 1))
+```
+
+
+```{r}
+# Train Test Split
+set.seed(0)
+split = sample.split(df$Purchased, SplitRatio = 0.8)
+train = subset(df, split == TRUE)
+test = subset(df, split == FALSE)
+```
+```{r}
+# Feature Scaling
+train[, 2:3] = scale(train[, 2:3])
+test[, 2:3] = scale(test[, 2:3])
+```
