@@ -1,0 +1,138 @@
+<html>
+<head>
+<title>basic_sql.ipynb</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #808080; font-style: italic;}
+.s1 { color: #000000;}
+.s2 { color: #000080; font-weight: bold;}
+.s3 { color: #008000; font-weight: bold;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+basic_sql.ipynb</font>
+</center></td></tr></table>
+<pre><span class="s0">#%% md 
+</span>In this notebook I will use the [Chinook Database](https://github.com/lerocha/chinook-database) to answer a bunch of simple questions. First, let's 
+connect to the database. 
+<span class="s0">#%% 
+</span><span class="s2">import </span>pandas <span class="s2">as </span>pd
+<span class="s2">from </span>IPython.core.interactiveshell <span class="s2">import </span>InteractiveShell
+InteractiveShell.ast_node_interactivity = <span class="s3">&quot;all&quot;</span>
+cred = {<span class="s3">&quot;host&quot;</span>: <span class="s3">'localhost'</span>, <span class="s3">'dbname'</span>: <span class="s3">'yukontaf'</span>, <span class="s3">'user'</span>: <span class="s3">'glebsokolov'</span>,
+        <span class="s3">'password'</span>: <span class="s3">''</span>}
+<span class="s2">from </span>sqlalchemy <span class="s2">import </span>create_engine
+
+con = create_engine(
+    <span class="s3">f'postgresql://</span><span class="s2">{</span>cred[<span class="s3">&quot;user&quot;</span>]<span class="s2">}</span><span class="s3">:</span><span class="s2">{</span>cred[<span class="s3">&quot;password&quot;</span>]<span class="s2">}</span><span class="s3">@</span><span class="s2">{</span>cred[<span class="s3">&quot;host&quot;</span>]<span class="s2">}</span><span class="s3">/</span><span class="s2">{</span>cred[<span class="s3">&quot;dbname&quot;</span>]<span class="s2">}</span><span class="s3">'</span>
+)
+
+
+<span class="s2">def </span>select(sql):
+    <span class="s2">return </span>pd.read_sql(sql, con)
+<span class="s0">#%% md 
+</span>The scheme of the database looks like this ![this](/Users/glebsokolov/projects/chinook_scheme.png): 
+<span class="s0">#%% md 
+</span>1. Which countries have the most invoices? 
+<span class="s0">#%% 
+</span>sql = <span class="s3">'''SELECT DISTINCT &quot;BillingCountry&quot;, 
+                count(&quot;InvoiceId&quot;) OVER (PARTITION BY &quot;BillingCountry&quot;) AS cnt 
+FROM &quot;Invoice&quot; 
+ORDER BY cnt DESC'''</span>
+select(sql)
+<span class="s0">#%% md 
+</span>2. Which city has the best customers? (We need to find out which city has the highest 
+ sum of invoice totals) 
+<span class="s0">#%% 
+</span>sql = <span class="s3">'''SELECT &quot;BillingCity&quot;, 
+       sum(&quot;Total&quot;) AS total 
+FROM &quot;Invoice&quot; 
+GROUP BY &quot;BillingCity&quot; 
+ORDER BY total DESC 
+LIMIT 1'''</span>
+select(sql)
+<span class="s0">#%% md 
+</span>3. Who is the best customer? (Build a query that returns the person who has spent the most money) 
+<span class="s0">#%% 
+</span>sql = <span class="s3">'''SELECT DISTINCT &quot;CustomerId&quot; , 
+                sum(&quot;Total&quot;) OVER (PARTITION BY &quot;CustomerId&quot;) AS total_sum 
+FROM &quot;Invoice&quot; a 
+LEFT JOIN &quot;InvoiceLine&quot; b ON a.&quot;InvoiceId&quot; = b.&quot;InvoiceId&quot; 
+ORDER BY total_sum DESC'''</span>
+select(sql)
+<span class="s0">#%% md 
+</span>4. Find out the email, first name, last name, and Genre of all Rock Music listeners 
+<span class="s0">#%% 
+</span>sql = <span class="s3">'''SELECT &quot;FirstName&quot;, 
+       &quot;LastName&quot;, 
+       &quot;Email&quot;, 
+       e.&quot;Name&quot; 
+FROM &quot;Invoice&quot; a 
+         LEFT JOIN &quot;InvoiceLine&quot; b ON a.&quot;InvoiceId&quot; = b.&quot;InvoiceId&quot; 
+         LEFT JOIN &quot;Customer&quot; c ON a.&quot;CustomerId&quot; = c.&quot;CustomerId&quot; 
+         LEFT JOIN &quot;Track&quot; d ON b.&quot;TrackId&quot; = d.&quot;TrackId&quot; 
+         LEFT JOIN &quot;Genre&quot; e ON d.&quot;GenreId&quot; = e.&quot;GenreId&quot;'''</span>
+select(sql)
+<span class="s0">#%% md 
+</span>5. Now let's find  the artists who have written the most rock music in our dataset. 
+So, I will write a query that returns the Artist name and total track count of the top 
+ 10 rock bands. 
+<span class="s0">#%% 
+</span>sql = <span class="s3">'''SELECT DISTINCT a.&quot;Name&quot;, 
+                count(c.&quot;Name&quot;) OVER (PARTITION BY a.&quot;Name&quot;) AS song_cnt 
+FROM &quot;Artist&quot; a 
+         LEFT JOIN &quot;Album&quot; b ON a.&quot;ArtistId&quot; = b.&quot;ArtistId&quot; 
+         LEFT JOIN &quot;Track&quot; c ON b.&quot;AlbumId&quot; = c.&quot;AlbumId&quot; 
+         LEFT JOIN &quot;Genre&quot; d ON c.&quot;GenreId&quot; = d.&quot;GenreId&quot; 
+WHERE d.&quot;Name&quot; = 'Rock' 
+ORDER BY song_cnt DESC'''</span>
+select(sql)
+<span class="s0">#%% md 
+</span>6. 
+- Find out which artist has earned the most according to the InvoiceLines 
+- Use this artist to find which customer spent the most on this artist 
+<span class="s0">#%% 
+</span>sql1 = <span class="s3">'''SELECT DISTINCT e.&quot;ArtistId&quot;, 
+                e.&quot;Name&quot;, 
+                sum(b.&quot;UnitPrice&quot;*&quot;Quantity&quot;) OVER (PARTITION BY e.&quot;ArtistId&quot;) AS total_earings 
+FROM &quot;Invoice&quot; a 
+LEFT JOIN &quot;InvoiceLine&quot; b ON a.&quot;InvoiceId&quot; = b.&quot;InvoiceId&quot; 
+LEFT JOIN &quot;Track&quot; c ON b.&quot;TrackId&quot; = c.&quot;TrackId&quot; 
+LEFT JOIN &quot;Album&quot; d ON c.&quot;AlbumId&quot; = d.&quot;AlbumId&quot; 
+LEFT JOIN &quot;Artist&quot; e ON d.&quot;ArtistId&quot; = e.&quot;ArtistId&quot; 
+ORDER BY total_earings DESC'''</span>
+select(sql1)
+<span class="s0">#%% 
+</span>sql2 = <span class="s3">'''SELECT DISTINCT &quot;CustomerId&quot;, 
+                sum(b.&quot;UnitPrice&quot;*&quot;Quantity&quot;) OVER (PARTITION BY &quot;CustomerId&quot;) AS customer_spendings 
+FROM &quot;Invoice&quot; a 
+         LEFT JOIN &quot;InvoiceLine&quot; b ON a.&quot;InvoiceId&quot; = b.&quot;InvoiceId&quot; 
+         LEFT JOIN &quot;Track&quot; c ON b.&quot;TrackId&quot; = c.&quot;TrackId&quot; 
+         LEFT JOIN &quot;Album&quot; d ON c.&quot;AlbumId&quot; = d.&quot;AlbumId&quot; 
+         LEFT JOIN &quot;Artist&quot; e ON d.&quot;ArtistId&quot; = e.&quot;ArtistId&quot; 
+WHERE e.&quot;Name&quot;='Iron Maiden' 
+ORDER BY customer_spendings DESC'''</span>
+select(sql2)
+<span class="s0">#%% md 
+</span>7. Return all the track names that have a song length longer than the average song 
+length. 
+<span class="s0">#%% 
+</span>sql = <span class="s3">'''SELECT tt.&quot;Name&quot;, 
+       tt.&quot;Milliseconds&quot; 
+FROM 
+    (SELECT t.&quot;Name&quot;, 
+            &quot;Milliseconds&quot;, 
+            AVG (&quot;Milliseconds&quot;) OVER (PARTITION BY t .col) AS average 
+     FROM 
+         (SELECT &quot;Name&quot;, 
+                 1 AS col, 
+                 &quot;Milliseconds&quot; 
+          FROM &quot;Track&quot;)t)tt 
+WHERE tt.&quot;Milliseconds&quot;&gt;tt.average 
+ORDER BY &quot;Milliseconds&quot; DESC'''</span>
+select(sql)</pre>
+</body>
+</html>
