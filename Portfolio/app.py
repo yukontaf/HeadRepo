@@ -167,28 +167,31 @@ means_by_cat = px.histogram(
 # grouped = nyse.drop("Unnamed: 0", axis=1).groupby("GICS Sector")
 
 
-selector_sector = lambda x: html.Div(
-    dcc.Dropdown(
-        nyse["GICS Sector"].unique(),
-        "Industrials",
-        id=x,
-    ),
-)
+def selector_sector(x):
+    return html.Div(
+        dcc.Dropdown(
+            nyse["GICS Sector"].unique(),
+            "Industrials",
+            id=x,
+        ),
+    )
 
-selector = lambda x: html.Div(
-    dcc.Dropdown(
-        [
+
+def selector(x):
+    return html.Div(
+        dcc.Dropdown(
+            [
+                "Total Revenue",
+                "Cost of Goods Sold",
+                "Sales, General and Admin.",
+                "Research and Development",
+                "Other Operating Items",
+            ],
             "Total Revenue",
-            "Cost of Goods Sold",
-            "Sales, General and Admin.",
-            "Research and Development",
-            "Other Operating Items",
-        ],
-        "Total Revenue",
-        id=x,
-    ),
-    style={"width": "30%"},
-)
+            id=x,
+        ),
+        style={"width": "30%"},
+    )
 
 
 def breaks(num):
@@ -197,60 +200,41 @@ def breaks(num):
 
 app.layout = html.Div(
     children=[
-        # html.Div(
-        #     [
-        #         html.Div(
-        #             [
-        #                 html.H3("Column 1"),
-        #                 overview,
-        #             ],
-        #             className="six columns",
-        #         ),
-        #         html.Div(
-        #             [
-        #                 html.H3("Column 2"),
-        #                 summary,
-        #             ],
-        #             className="six columns",
-        #         ),
-        #     ],
-        #     className="container",
-        # ),
         html.H1("Lets view some graphs"),
         html.Span(
             "First, let's have a look on the data itself (you can sort and filter each column's contents). \nNote that all numerical values expressed in $ billions "
         ),
         *breaks(3),
         html.Div(
-            [
-                html.Div(
-                    [overview],
-                    # style={"width": "50%"},
-                    className="eight columns",
-                ),
-                # html.Span("The most informative data is contained in this brief summary"),
-                # *breaks(3),
-                html.Div(
-                    [summary],
-                    # style={"width": "30%"},
-                    className="four columns",
-                ),
-            ],
-            className="container",
+            [overview],
+            style={"margin-left": "auto", "margin-right": "auto", "width": "80%"},
+        ),
+        *breaks(2),
+        html.Span("A brief summary of the data given here is placed below."),
+        *breaks(3),
+        html.Div(
+            [summary],
+            style={"margin-left": "auto", "margin-right": "auto", "width": "50%"},
         ),
         *breaks(1),
         html.Span(
             "Obviously, we are mostly interested in total revenues and total sales and how are they impacted by other variables. So, first, let's see how is this most important value  distributed"
         ),
+        *breaks(1),
         html.Div(
             dcc.Graph(figure=total_revenue_hist, id="revenue_hist"),
-            style={"display": "inline-block", "width": "100%"},
+            style={"display": "inline-block", "width": "80%"},
+        ),
+        *breaks(1),
+        html.Span(
+            "Now let's see how does the distribution of total revenue behave when changing an economic sector from one to another based on the amount of research and development expenses"
         ),
         *breaks(1),
         html.Div(
             dcc.Graph(figure=scatter_general, id="scatter_general"),
-            style={"display": "inline-block", "width": "100%"},
+            style={"display": "inline-block", "width": "80%"},
         ),
+        *breaks(1),
         html.Span(
             "In a dropdown list here you can choose an industrial sector and view scatterplot of a relation between the relation of research and developement amount of a company and its total sales"
         ),
@@ -266,6 +250,7 @@ app.layout = html.Div(
         *breaks(1),
         html.Div(
             dcc.Graph(id="scatter-graph"),
+            style={"width": "80%"},
         ),
         *breaks(1),
         html.Div(
@@ -275,10 +260,12 @@ app.layout = html.Div(
             "As we can see here, there are industries where the impact of the research and developement amount is obvious (i.e. Industrials) and where it doesn't play any role (Consumer Discretionary)"
         ),
         *breaks(2),
-        html.Span("Here you can choose a variable and view its distribution"),
+        html.Span(
+            "Here you can choose a variable and view its distribution, the most important features of the variable are summarized in the upper-right angle of the plot"
+        ),
         *breaks(2),
         selector("var-dd"),
-        dcc.Graph(id="hist"),
+        dcc.Graph(id="hist", style={"width": "80%"}),
         html.Br(),
         html.Span("Number of tickers by Industry (table is sortable)"),
         *breaks(3),
@@ -364,6 +351,7 @@ app.layout = html.Div(
         *breaks(1),
         html.Div(
             dcc.Graph(figure=heatmap),
+            style={"margin-left": "auto", "margin-right": "auto", "width": "80%"},
         ),
         # *breaks(2),
         # html.Span(
@@ -372,6 +360,18 @@ app.layout = html.Div(
         *breaks(1),
         html.Div(
             dcc.Graph(figure=scatter_matrix),
+            style={
+                "margin-left": "auto",
+                "margin-right": "auto",
+                "width": "80%",
+                "height": "140%",
+            },
+        ),
+        dcc.Markdown(
+            '''
+            1. Create a dashboard for a Profit and Loss Statement that calculates the Gross Profit, Operating Profit or EBIT for a company selected from a drop-down list. Your drop-down list should pull historical fundamentals data to create the P&L Statement. The P&L statement should include the  Gross Profit, Operating Profit or EBIT values for all the years there is historical data available for that company in the dataset.
+            
+            2. Create a financial model for a company (different from Task 2) of your choice that forecasts out the Gross Profit, Operating Profit or EBIT for two more years using three scenarios (Best case, Weak case and Base case). Your assumptions for revenue growth, gross margin and operating margin should change for each scenario.'''
         ),
     ],
     style={"font-family": "verdana", "margin-left": "100px", "margin-right": "100px"},
