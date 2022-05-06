@@ -5,6 +5,7 @@ output: html_notebook
 
 ```{r}
 library(tidyverse)
+library(plotly)
 library(ggplot2)
 library(PropCIs)
 library(zeallot)
