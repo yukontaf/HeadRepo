@@ -1,0 +1,514 @@
+2022-09-03 10:55:03.577 | ERROR    | __main__:<cell line: 10>:10 - An error has been caught in function '<cell line: 10>', process 'MainProcess' (16752), thread 'MainThread' (4595598848):
+Traceback (most recent call last):
+
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/runpy.py", line 192, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+           │         │     └ {'__name__': '__main__', '__doc__': 'Entry point for launching an IPython kernel.\n\nThis is separate from the ipykernel pack...
+           │         └ <code object <module> at 0x7fbff4e4c190, file "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packa...
+           └ <function _run_code at 0x7fbff4ebf430>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+         │     └ {'__name__': '__main__', '__doc__': 'Entry point for launching an IPython kernel.\n\nThis is separate from the ipykernel pack...
+         └ <code object <module> at 0x7fbff4e4c190, file "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packa...
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/ipykernel_launcher.py", line 17, in <module>
+    app.launch_new_instance()
+    │   └ <bound method Application.launch_instance of <class 'ipykernel.kernelapp.IPKernelApp'>>
+    └ <module 'ipykernel.kernelapp' from '/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/ipykern...
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/traitlets/config/application.py", line 976, in launch_instance
+    app.start()
+    │   └ <function IPKernelApp.start at 0x7fbffaa7c160>
+    └ <ipykernel.kernelapp.IPKernelApp object at 0x7fbff4c687f0>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/ipykernel/kernelapp.py", line 712, in start
+    self.io_loop.start()
+    │    │       └ <function BaseAsyncIOLoop.start at 0x7fbff9111b80>
+    │    └ <tornado.platform.asyncio.AsyncIOMainLoop object at 0x7fbffaaa4e50>
+    └ <ipykernel.kernelapp.IPKernelApp object at 0x7fbff4c687f0>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/tornado/platform/asyncio.py", line 199, in start
+    self.asyncio_loop.run_forever()
+    │    │            └ <function BaseEventLoop.run_forever at 0x7fbff7d4d8b0>
+    │    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+    └ <tornado.platform.asyncio.AsyncIOMainLoop object at 0x7fbffaaa4e50>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/asyncio/base_events.py", line 563, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x7fbff7d4f430>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/asyncio/base_events.py", line 1844, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x7fbff7cf1dc0>
+    └ <Handle <TaskWakeupMethWrapper object at 0x7fbff96c8160>(<Future finis...040>, ...],))>)>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/asyncio/events.py", line 81, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <TaskWakeupMethWrapper object at 0x7fbff96c8160>(<Future finis...040>, ...],))>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <TaskWakeupMethWrapper object at 0x7fbff96c8160>(<Future finis...040>, ...],))>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <TaskWakeupMethWrapper object at 0x7fbff96c8160>(<Future finis...040>, ...],))>)>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/ipykernel/kernelbase.py", line 510, in dispatch_queue
+    await self.process_one()
+          │    └ <function Kernel.process_one at 0x7fbffa169a60>
+          └ <ipykernel.ipkernel.IPythonKernel object at 0x7fbffaaa4820>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/ipykernel/kernelbase.py", line 499, in process_one
+    await dispatch(*args)
+          │         └ ([<zmq.sugar.frame.Frame object at 0x7fbffaa9b040>, <zmq.sugar.frame.Frame object at 0x7fbffab4e040>, <zmq.sugar.frame.Frame ...
+          └ <bound method Kernel.dispatch_shell of <ipykernel.ipkernel.IPythonKernel object at 0x7fbffaaa4820>>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/ipykernel/kernelbase.py", line 406, in dispatch_shell
+    await result
+          └ <coroutine object Kernel.execute_request at 0x7fbfc5257ec0>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/ipykernel/kernelbase.py", line 730, in execute_request
+    reply_content = await reply_content
+                          └ <coroutine object IPythonKernel.do_execute at 0x7fbfc5257e40>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/ipykernel/ipkernel.py", line 383, in do_execute
+    res = shell.run_cell(
+          │     └ <function ZMQInteractiveShell.run_cell at 0x7fbffaa6fa60>
+          └ <ipykernel.zmqshell.ZMQInteractiveShell object at 0x7fbffab11940>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/ipykernel/zmqshell.py", line 528, in run_cell
+    return super().run_cell(*args, **kwargs)
+                             │       └ {'store_history': True, 'silent': False, 'cell_id': 'vscode-notebook-cell:/Users/glebsokolov/HeadRepo/beWise.ai.ipynb#X12sZml...
+                             └ ('@logger.catch\ndef make_tensor():\n    replies_tensor = tf.convert_to_tensor(sequence(texts_combined[0]))\n    for seq in s...
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/IPython/core/interactiveshell.py", line 2881, in run_cell
+    result = self._run_cell(
+             │    └ <function InteractiveShell._run_cell at 0x7fbff96cf160>
+             └ <ipykernel.zmqshell.ZMQInteractiveShell object at 0x7fbffab11940>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/IPython/core/interactiveshell.py", line 2936, in _run_cell
+    return runner(coro)
+           │      └ <coroutine object InteractiveShell.run_cell_async at 0x7fbfc5257dc0>
+           └ <function _pseudo_sync_runner at 0x7fbff96bdb80>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/IPython/core/async_helpers.py", line 129, in _pseudo_sync_runner
+    coro.send(None)
+    │    └ <method 'send' of 'coroutine' objects>
+    └ <coroutine object InteractiveShell.run_cell_async at 0x7fbfc5257dc0>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/IPython/core/interactiveshell.py", line 3135, in run_cell_async
+    has_raised = await self.run_ast_nodes(code_ast.body, cell_name,
+                       │    │             │        │     └ '/var/folders/t0/fw3jvl196_v78v94hzhxhpgw0000gn/T/ipykernel_16752/1112139745.py'
+                       │    │             │        └ [<_ast.FunctionDef object at 0x7fbfc5275670>, <_ast.Expr object at 0x7fbfc5222370>]
+                       │    │             └ <_ast.Module object at 0x7fbfc5275790>
+                       │    └ <function InteractiveShell.run_ast_nodes at 0x7fbff96cf4c0>
+                       └ <ipykernel.zmqshell.ZMQInteractiveShell object at 0x7fbffab11940>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/IPython/core/interactiveshell.py", line 3338, in run_ast_nodes
+    if await self.run_code(code, result, async_=asy):
+             │    │        │     │              └ False
+             │    │        │     └ <ExecutionResult object at 7fbfc4352d00, execution_count=21 error_before_exec=None error_in_exec=None info=<ExecutionInfo obj...
+             │    │        └ <code object <cell line: 10> at 0x7fbfc52880e0, file "/var/folders/t0/fw3jvl196_v78v94hzhxhpgw0000gn/T/ipykernel_16752/111213...
+             │    └ <function InteractiveShell.run_code at 0x7fbff96cf550>
+             └ <ipykernel.zmqshell.ZMQInteractiveShell object at 0x7fbffab11940>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/IPython/core/interactiveshell.py", line 3398, in run_code
+    exec(code_obj, self.user_global_ns, self.user_ns)
+         │         │    │               │    └ {'__name__': '__main__', '__doc__': 'Automatically created module for IPython interactive environment', '__package__': None, ...
+         │         │    │               └ <ipykernel.zmqshell.ZMQInteractiveShell object at 0x7fbffab11940>
+         │         │    └ <property object at 0x7fbff9699900>
+         │         └ <ipykernel.zmqshell.ZMQInteractiveShell object at 0x7fbffab11940>
+         └ <code object <cell line: 10> at 0x7fbfc52880e0, file "/var/folders/t0/fw3jvl196_v78v94hzhxhpgw0000gn/T/ipykernel_16752/111213...
+
+> File "/var/folders/t0/fw3jvl196_v78v94hzhxhpgw0000gn/T/ipykernel_16752/1112139745.py", line 10, in <cell line: 10>
+    make_tensor()
+    └ <function make_tensor at 0x7fbfc5277430>
+
+  File "/var/folders/t0/fw3jvl196_v78v94hzhxhpgw0000gn/T/ipykernel_16752/1112139745.py", line 7, in make_tensor
+    initial_word = navec[keyword(word)] if word != 0 else np.zeros((300,))
+                   │     │       │         │              │  └ <built-in function zeros>
+                   │     │       │         │              └ <module 'numpy' from '/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/numpy/__init__.py'>
+                   │     │       │         └ array([23], dtype=int32)
+                   │     │       └ array([23], dtype=int32)
+                   │     └ <function <lambda> at 0x7fbfc4357670>
+                   └ Navec(meta=Meta(id='hudlit_v1_12B_500K_300d_100q', protocol=1), vocab=Vocab(words=[...], counts=[...]), pq=PQ(vectors=500002,...
+
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/navec/navec.py", line 23, in __getitem__
+    id = self.vocab[word]
+         │    │     └ {'але'}
+         │    └ Vocab(words=[...], counts=[...])
+         └ Navec(meta=Meta(id='hudlit_v1_12B_500K_300d_100q', protocol=1), vocab=Vocab(words=[...], counts=[...]), pq=PQ(vectors=500002,...
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/navec/vocab.py", line 30, in __getitem__
+    return self.word_ids[word]
+           │    │        └ {'але'}
+           │    └ {'a': 0, 'a-а': 1, 'aa': 2, 'aaa': 3, 'aan': 4, 'aaron': 5, 'aazen': 6, 'ab': 7, 'abandon': 8, 'abandoned': 9, 'abb': 10, 'ab...
+           └ Vocab(words=[...], counts=[...])
+
+TypeError: unhashable type: 'set'
+2022-09-03 10:57:29.613 | ERROR    | __main__:<cell line: 10>:10 - An error has been caught in function '<cell line: 10>', process 'MainProcess' (16752), thread 'MainThread' (4595598848):
+Traceback (most recent call last):
+
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/runpy.py", line 192, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+           │         │     └ {'__name__': '__main__', '__doc__': 'Entry point for launching an IPython kernel.\n\nThis is separate from the ipykernel pack...
+           │         └ <code object <module> at 0x7fbff4e4c190, file "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packa...
+           └ <function _run_code at 0x7fbff4ebf430>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+         │     └ {'__name__': '__main__', '__doc__': 'Entry point for launching an IPython kernel.\n\nThis is separate from the ipykernel pack...
+         └ <code object <module> at 0x7fbff4e4c190, file "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packa...
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/ipykernel_launcher.py", line 17, in <module>
+    app.launch_new_instance()
+    │   └ <bound method Application.launch_instance of <class 'ipykernel.kernelapp.IPKernelApp'>>
+    └ <module 'ipykernel.kernelapp' from '/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/ipykern...
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/traitlets/config/application.py", line 976, in launch_instance
+    app.start()
+    │   └ <function IPKernelApp.start at 0x7fbffaa7c160>
+    └ <ipykernel.kernelapp.IPKernelApp object at 0x7fbff4c687f0>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/ipykernel/kernelapp.py", line 712, in start
+    self.io_loop.start()
+    │    │       └ <function BaseAsyncIOLoop.start at 0x7fbff9111b80>
+    │    └ <tornado.platform.asyncio.AsyncIOMainLoop object at 0x7fbffaaa4e50>
+    └ <ipykernel.kernelapp.IPKernelApp object at 0x7fbff4c687f0>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/tornado/platform/asyncio.py", line 199, in start
+    self.asyncio_loop.run_forever()
+    │    │            └ <function BaseEventLoop.run_forever at 0x7fbff7d4d8b0>
+    │    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+    └ <tornado.platform.asyncio.AsyncIOMainLoop object at 0x7fbffaaa4e50>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/asyncio/base_events.py", line 563, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x7fbff7d4f430>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/asyncio/base_events.py", line 1844, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x7fbff7cf1dc0>
+    └ <Handle <TaskWakeupMethWrapper object at 0x7fbfc5162280>(<Future finis...040>, ...],))>)>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/asyncio/events.py", line 81, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <TaskWakeupMethWrapper object at 0x7fbfc5162280>(<Future finis...040>, ...],))>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <TaskWakeupMethWrapper object at 0x7fbfc5162280>(<Future finis...040>, ...],))>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <TaskWakeupMethWrapper object at 0x7fbfc5162280>(<Future finis...040>, ...],))>)>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/ipykernel/kernelbase.py", line 510, in dispatch_queue
+    await self.process_one()
+          │    └ <function Kernel.process_one at 0x7fbffa169a60>
+          └ <ipykernel.ipkernel.IPythonKernel object at 0x7fbffaaa4820>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/ipykernel/kernelbase.py", line 499, in process_one
+    await dispatch(*args)
+          │         └ ([<zmq.sugar.frame.Frame object at 0x7fbffaa9b040>, <zmq.sugar.frame.Frame object at 0x7fbffab4e040>, <zmq.sugar.frame.Frame ...
+          └ <bound method Kernel.dispatch_shell of <ipykernel.ipkernel.IPythonKernel object at 0x7fbffaaa4820>>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/ipykernel/kernelbase.py", line 406, in dispatch_shell
+    await result
+          └ <coroutine object Kernel.execute_request at 0x7fbfc5257740>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/ipykernel/kernelbase.py", line 730, in execute_request
+    reply_content = await reply_content
+                          └ <coroutine object IPythonKernel.do_execute at 0x7fbfc5257c40>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/ipykernel/ipkernel.py", line 383, in do_execute
+    res = shell.run_cell(
+          │     └ <function ZMQInteractiveShell.run_cell at 0x7fbffaa6fa60>
+          └ <ipykernel.zmqshell.ZMQInteractiveShell object at 0x7fbffab11940>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/ipykernel/zmqshell.py", line 528, in run_cell
+    return super().run_cell(*args, **kwargs)
+                             │       └ {'store_history': True, 'silent': False, 'cell_id': 'vscode-notebook-cell:/Users/glebsokolov/HeadRepo/beWise.ai.ipynb#X12sZml...
+                             └ ('@logger.catch\ndef make_tensor():\n    replies_tensor = tf.convert_to_tensor(sequence(texts_combined[0]))\n    for seq in s...
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/IPython/core/interactiveshell.py", line 2881, in run_cell
+    result = self._run_cell(
+             │    └ <function InteractiveShell._run_cell at 0x7fbff96cf160>
+             └ <ipykernel.zmqshell.ZMQInteractiveShell object at 0x7fbffab11940>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/IPython/core/interactiveshell.py", line 2936, in _run_cell
+    return runner(coro)
+           │      └ <coroutine object InteractiveShell.run_cell_async at 0x7fbfc52becc0>
+           └ <function _pseudo_sync_runner at 0x7fbff96bdb80>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/IPython/core/async_helpers.py", line 129, in _pseudo_sync_runner
+    coro.send(None)
+    │    └ <method 'send' of 'coroutine' objects>
+    └ <coroutine object InteractiveShell.run_cell_async at 0x7fbfc52becc0>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/IPython/core/interactiveshell.py", line 3135, in run_cell_async
+    has_raised = await self.run_ast_nodes(code_ast.body, cell_name,
+                       │    │             │        │     └ '/var/folders/t0/fw3jvl196_v78v94hzhxhpgw0000gn/T/ipykernel_16752/1112139745.py'
+                       │    │             │        └ [<_ast.FunctionDef object at 0x7fbfc51fb3a0>, <_ast.Expr object at 0x7fbfc52752b0>]
+                       │    │             └ <_ast.Module object at 0x7fbfc51fb730>
+                       │    └ <function InteractiveShell.run_ast_nodes at 0x7fbff96cf4c0>
+                       └ <ipykernel.zmqshell.ZMQInteractiveShell object at 0x7fbffab11940>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/IPython/core/interactiveshell.py", line 3338, in run_ast_nodes
+    if await self.run_code(code, result, async_=asy):
+             │    │        │     │              └ False
+             │    │        │     └ <ExecutionResult object at 7fbfc5222460, execution_count=25 error_before_exec=None error_in_exec=None info=<ExecutionInfo obj...
+             │    │        └ <code object <cell line: 10> at 0x7fbfc52b6ea0, file "/var/folders/t0/fw3jvl196_v78v94hzhxhpgw0000gn/T/ipykernel_16752/111213...
+             │    └ <function InteractiveShell.run_code at 0x7fbff96cf550>
+             └ <ipykernel.zmqshell.ZMQInteractiveShell object at 0x7fbffab11940>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/IPython/core/interactiveshell.py", line 3398, in run_code
+    exec(code_obj, self.user_global_ns, self.user_ns)
+         │         │    │               │    └ {'__name__': '__main__', '__doc__': 'Automatically created module for IPython interactive environment', '__package__': None, ...
+         │         │    │               └ <ipykernel.zmqshell.ZMQInteractiveShell object at 0x7fbffab11940>
+         │         │    └ <property object at 0x7fbff9699900>
+         │         └ <ipykernel.zmqshell.ZMQInteractiveShell object at 0x7fbffab11940>
+         └ <code object <cell line: 10> at 0x7fbfc52b6ea0, file "/var/folders/t0/fw3jvl196_v78v94hzhxhpgw0000gn/T/ipykernel_16752/111213...
+
+> File "/var/folders/t0/fw3jvl196_v78v94hzhxhpgw0000gn/T/ipykernel_16752/1112139745.py", line 10, in <cell line: 10>
+    make_tensor()
+    └ <function make_tensor at 0x7fbfc528cc10>
+
+  File "/var/folders/t0/fw3jvl196_v78v94hzhxhpgw0000gn/T/ipykernel_16752/1112139745.py", line 7, in make_tensor
+    initial_word = navec[keyword(word)] if word != 0 else np.zeros((300,))
+                   │     │       │         │              │  └ <built-in function zeros>
+                   │     │       │         │              └ <module 'numpy' from '/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/numpy/__init__.py'>
+                   │     │       │         └ array([23], dtype=int32)
+                   │     │       └ array([23], dtype=int32)
+                   │     └ <function <lambda> at 0x7fbfc4536ca0>
+                   └ Navec(meta=Meta(id='hudlit_v1_12B_500K_300d_100q', protocol=1), vocab=Vocab(words=[...], counts=[...]), pq=PQ(vectors=500002,...
+
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/navec/navec.py", line 23, in __getitem__
+    id = self.vocab[word]
+         │    │     └ ['але']
+         │    └ Vocab(words=[...], counts=[...])
+         └ Navec(meta=Meta(id='hudlit_v1_12B_500K_300d_100q', protocol=1), vocab=Vocab(words=[...], counts=[...]), pq=PQ(vectors=500002,...
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/navec/vocab.py", line 30, in __getitem__
+    return self.word_ids[word]
+           │    │        └ ['але']
+           │    └ {'a': 0, 'a-а': 1, 'aa': 2, 'aaa': 3, 'aan': 4, 'aaron': 5, 'aazen': 6, 'ab': 7, 'abandon': 8, 'abandoned': 9, 'abb': 10, 'ab...
+           └ Vocab(words=[...], counts=[...])
+
+TypeError: unhashable type: 'list'
+2022-09-03 10:57:52.698 | ERROR    | __main__:<cell line: 10>:10 - An error has been caught in function '<cell line: 10>', process 'MainProcess' (16752), thread 'MainThread' (4595598848):
+Traceback (most recent call last):
+
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/keras/utils/data_utils.py", line 1010, in pad_sequences
+    lengths.append(len(x))
+    │       │          └ 0.015439916402101517
+    │       └ <method 'append' of 'list' objects>
+    └ []
+
+TypeError: object of type 'numpy.float64' has no len()
+
+
+The above exception was the direct cause of the following exception:
+
+
+Traceback (most recent call last):
+
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/runpy.py", line 192, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+           │         │     └ {'__name__': '__main__', '__doc__': 'Entry point for launching an IPython kernel.\n\nThis is separate from the ipykernel pack...
+           │         └ <code object <module> at 0x7fbff4e4c190, file "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packa...
+           └ <function _run_code at 0x7fbff4ebf430>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+         │     └ {'__name__': '__main__', '__doc__': 'Entry point for launching an IPython kernel.\n\nThis is separate from the ipykernel pack...
+         └ <code object <module> at 0x7fbff4e4c190, file "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packa...
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/ipykernel_launcher.py", line 17, in <module>
+    app.launch_new_instance()
+    │   └ <bound method Application.launch_instance of <class 'ipykernel.kernelapp.IPKernelApp'>>
+    └ <module 'ipykernel.kernelapp' from '/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/ipykern...
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/traitlets/config/application.py", line 976, in launch_instance
+    app.start()
+    │   └ <function IPKernelApp.start at 0x7fbffaa7c160>
+    └ <ipykernel.kernelapp.IPKernelApp object at 0x7fbff4c687f0>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/ipykernel/kernelapp.py", line 712, in start
+    self.io_loop.start()
+    │    │       └ <function BaseAsyncIOLoop.start at 0x7fbff9111b80>
+    │    └ <tornado.platform.asyncio.AsyncIOMainLoop object at 0x7fbffaaa4e50>
+    └ <ipykernel.kernelapp.IPKernelApp object at 0x7fbff4c687f0>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/tornado/platform/asyncio.py", line 199, in start
+    self.asyncio_loop.run_forever()
+    │    │            └ <function BaseEventLoop.run_forever at 0x7fbff7d4d8b0>
+    │    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+    └ <tornado.platform.asyncio.AsyncIOMainLoop object at 0x7fbffaaa4e50>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/asyncio/base_events.py", line 563, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x7fbff7d4f430>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/asyncio/base_events.py", line 1844, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x7fbff7cf1dc0>
+    └ <Handle <TaskWakeupMethWrapper object at 0x7fbfc477e490>(<Future finis...040>, ...],))>)>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/asyncio/events.py", line 81, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <TaskWakeupMethWrapper object at 0x7fbfc477e490>(<Future finis...040>, ...],))>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <TaskWakeupMethWrapper object at 0x7fbfc477e490>(<Future finis...040>, ...],))>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <TaskWakeupMethWrapper object at 0x7fbfc477e490>(<Future finis...040>, ...],))>)>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/ipykernel/kernelbase.py", line 510, in dispatch_queue
+    await self.process_one()
+          │    └ <function Kernel.process_one at 0x7fbffa169a60>
+          └ <ipykernel.ipkernel.IPythonKernel object at 0x7fbffaaa4820>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/ipykernel/kernelbase.py", line 499, in process_one
+    await dispatch(*args)
+          │         └ ([<zmq.sugar.frame.Frame object at 0x7fbffaa9b040>, <zmq.sugar.frame.Frame object at 0x7fbffab4e040>, <zmq.sugar.frame.Frame ...
+          └ <bound method Kernel.dispatch_shell of <ipykernel.ipkernel.IPythonKernel object at 0x7fbffaaa4820>>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/ipykernel/kernelbase.py", line 406, in dispatch_shell
+    await result
+          └ <coroutine object Kernel.execute_request at 0x7fbfc52541c0>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/ipykernel/kernelbase.py", line 730, in execute_request
+    reply_content = await reply_content
+                          └ <coroutine object IPythonKernel.do_execute at 0x7fbfc52844c0>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/ipykernel/ipkernel.py", line 383, in do_execute
+    res = shell.run_cell(
+          │     └ <function ZMQInteractiveShell.run_cell at 0x7fbffaa6fa60>
+          └ <ipykernel.zmqshell.ZMQInteractiveShell object at 0x7fbffab11940>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/ipykernel/zmqshell.py", line 528, in run_cell
+    return super().run_cell(*args, **kwargs)
+                             │       └ {'store_history': True, 'silent': False, 'cell_id': 'vscode-notebook-cell:/Users/glebsokolov/HeadRepo/beWise.ai.ipynb#X12sZml...
+                             └ ('@logger.catch\ndef make_tensor():\n    replies_tensor = tf.convert_to_tensor(sequence(texts_combined[0]))\n    for seq in s...
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/IPython/core/interactiveshell.py", line 2881, in run_cell
+    result = self._run_cell(
+             │    └ <function InteractiveShell._run_cell at 0x7fbff96cf160>
+             └ <ipykernel.zmqshell.ZMQInteractiveShell object at 0x7fbffab11940>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/IPython/core/interactiveshell.py", line 2936, in _run_cell
+    return runner(coro)
+           │      └ <coroutine object InteractiveShell.run_cell_async at 0x7fbfc52becc0>
+           └ <function _pseudo_sync_runner at 0x7fbff96bdb80>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/IPython/core/async_helpers.py", line 129, in _pseudo_sync_runner
+    coro.send(None)
+    │    └ <method 'send' of 'coroutine' objects>
+    └ <coroutine object InteractiveShell.run_cell_async at 0x7fbfc52becc0>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/IPython/core/interactiveshell.py", line 3135, in run_cell_async
+    has_raised = await self.run_ast_nodes(code_ast.body, cell_name,
+                       │    │             │        │     └ '/var/folders/t0/fw3jvl196_v78v94hzhxhpgw0000gn/T/ipykernel_16752/138070794.py'
+                       │    │             │        └ [<_ast.FunctionDef object at 0x7fbfc4352670>, <_ast.Expr object at 0x7fbfc5275eb0>]
+                       │    │             └ <_ast.Module object at 0x7fbfc4352be0>
+                       │    └ <function InteractiveShell.run_ast_nodes at 0x7fbff96cf4c0>
+                       └ <ipykernel.zmqshell.ZMQInteractiveShell object at 0x7fbffab11940>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/IPython/core/interactiveshell.py", line 3338, in run_ast_nodes
+    if await self.run_code(code, result, async_=asy):
+             │    │        │     │              └ False
+             │    │        │     └ <ExecutionResult object at 7fbfe3fc0670, execution_count=26 error_before_exec=None error_in_exec=None info=<ExecutionInfo obj...
+             │    │        └ <code object <cell line: 10> at 0x7fbfc52b6ea0, file "/var/folders/t0/fw3jvl196_v78v94hzhxhpgw0000gn/T/ipykernel_16752/138070...
+             │    └ <function InteractiveShell.run_code at 0x7fbff96cf550>
+             └ <ipykernel.zmqshell.ZMQInteractiveShell object at 0x7fbffab11940>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/IPython/core/interactiveshell.py", line 3398, in run_code
+    exec(code_obj, self.user_global_ns, self.user_ns)
+         │         │    │               │    └ {'__name__': '__main__', '__doc__': 'Automatically created module for IPython interactive environment', '__package__': None, ...
+         │         │    │               └ <ipykernel.zmqshell.ZMQInteractiveShell object at 0x7fbffab11940>
+         │         │    └ <property object at 0x7fbff9699900>
+         │         └ <ipykernel.zmqshell.ZMQInteractiveShell object at 0x7fbffab11940>
+         └ <code object <cell line: 10> at 0x7fbfc52b6ea0, file "/var/folders/t0/fw3jvl196_v78v94hzhxhpgw0000gn/T/ipykernel_16752/138070...
+
+> File "/var/folders/t0/fw3jvl196_v78v94hzhxhpgw0000gn/T/ipykernel_16752/138070794.py", line 10, in <cell line: 10>
+    make_tensor()
+    └ <function make_tensor at 0x7fbfc52774c0>
+
+  File "/var/folders/t0/fw3jvl196_v78v94hzhxhpgw0000gn/T/ipykernel_16752/138070794.py", line 9, in make_tensor
+    res = pad_sequences(output_array)
+          │             └ array([ 0.01543992, -0.15983614,  0.61529845, ...,  0.        ,
+          │                       0.        ,  0.        ])
+          └ <function pad_sequences at 0x7fc002c03550>
+
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/keras/utils/data_utils.py", line 1015, in pad_sequences
+    raise ValueError('`sequences` must be a list of iterables. '
+
+ValueError: `sequences` must be a list of iterables. Found non-iterable: 0.015439916402101517
+2022-09-03 10:58:32.956 | ERROR    | __main__:<cell line: 11>:11 - An error has been caught in function '<cell line: 11>', process 'MainProcess' (16752), thread 'MainThread' (4595598848):
+Traceback (most recent call last):
+
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/keras/utils/data_utils.py", line 1010, in pad_sequences
+    lengths.append(len(x))
+    │       │          └ 0.015439916402101517
+    │       └ <method 'append' of 'list' objects>
+    └ []
+
+TypeError: object of type 'numpy.float64' has no len()
+
+
+The above exception was the direct cause of the following exception:
+
+
+Traceback (most recent call last):
+
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/runpy.py", line 192, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+           │         │     └ {'__name__': '__main__', '__doc__': 'Entry point for launching an IPython kernel.\n\nThis is separate from the ipykernel pack...
+           │         └ <code object <module> at 0x7fbff4e4c190, file "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packa...
+           └ <function _run_code at 0x7fbff4ebf430>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+         │     └ {'__name__': '__main__', '__doc__': 'Entry point for launching an IPython kernel.\n\nThis is separate from the ipykernel pack...
+         └ <code object <module> at 0x7fbff4e4c190, file "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packa...
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/ipykernel_launcher.py", line 17, in <module>
+    app.launch_new_instance()
+    │   └ <bound method Application.launch_instance of <class 'ipykernel.kernelapp.IPKernelApp'>>
+    └ <module 'ipykernel.kernelapp' from '/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/ipykern...
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/traitlets/config/application.py", line 976, in launch_instance
+    app.start()
+    │   └ <function IPKernelApp.start at 0x7fbffaa7c160>
+    └ <ipykernel.kernelapp.IPKernelApp object at 0x7fbff4c687f0>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/ipykernel/kernelapp.py", line 712, in start
+    self.io_loop.start()
+    │    │       └ <function BaseAsyncIOLoop.start at 0x7fbff9111b80>
+    │    └ <tornado.platform.asyncio.AsyncIOMainLoop object at 0x7fbffaaa4e50>
+    └ <ipykernel.kernelapp.IPKernelApp object at 0x7fbff4c687f0>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/tornado/platform/asyncio.py", line 199, in start
+    self.asyncio_loop.run_forever()
+    │    │            └ <function BaseEventLoop.run_forever at 0x7fbff7d4d8b0>
+    │    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+    └ <tornado.platform.asyncio.AsyncIOMainLoop object at 0x7fbffaaa4e50>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/asyncio/base_events.py", line 563, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x7fbff7d4f430>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/asyncio/base_events.py", line 1844, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x7fbff7cf1dc0>
+    └ <Handle <TaskWakeupMethWrapper object at 0x7fbffb1175e0>(<Future finis...040>, ...],))>)>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/asyncio/events.py", line 81, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <TaskWakeupMethWrapper object at 0x7fbffb1175e0>(<Future finis...040>, ...],))>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <TaskWakeupMethWrapper object at 0x7fbffb1175e0>(<Future finis...040>, ...],))>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <TaskWakeupMethWrapper object at 0x7fbffb1175e0>(<Future finis...040>, ...],))>)>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/ipykernel/kernelbase.py", line 510, in dispatch_queue
+    await self.process_one()
+          │    └ <function Kernel.process_one at 0x7fbffa169a60>
+          └ <ipykernel.ipkernel.IPythonKernel object at 0x7fbffaaa4820>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/ipykernel/kernelbase.py", line 499, in process_one
+    await dispatch(*args)
+          │         └ ([<zmq.sugar.frame.Frame object at 0x7fbffaa9b040>, <zmq.sugar.frame.Frame object at 0x7fbffab4e040>, <zmq.sugar.frame.Frame ...
+          └ <bound method Kernel.dispatch_shell of <ipykernel.ipkernel.IPythonKernel object at 0x7fbffaaa4820>>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/ipykernel/kernelbase.py", line 406, in dispatch_shell
+    await result
+          └ <coroutine object Kernel.execute_request at 0x7fbfc5284440>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/ipykernel/kernelbase.py", line 730, in execute_request
+    reply_content = await reply_content
+                          └ <coroutine object IPythonKernel.do_execute at 0x7fbfc5284540>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/ipykernel/ipkernel.py", line 383, in do_execute
+    res = shell.run_cell(
+          │     └ <function ZMQInteractiveShell.run_cell at 0x7fbffaa6fa60>
+          └ <ipykernel.zmqshell.ZMQInteractiveShell object at 0x7fbffab11940>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/ipykernel/zmqshell.py", line 528, in run_cell
+    return super().run_cell(*args, **kwargs)
+                             │       └ {'store_history': True, 'silent': False, 'cell_id': 'vscode-notebook-cell:/Users/glebsokolov/HeadRepo/beWise.ai.ipynb#X12sZml...
+                             └ ('@logger.catch\ndef make_tensor():\n    replies_tensor = tf.convert_to_tensor(sequence(texts_combined[0]))\n    for seq in s...
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/IPython/core/interactiveshell.py", line 2881, in run_cell
+    result = self._run_cell(
+             │    └ <function InteractiveShell._run_cell at 0x7fbff96cf160>
+             └ <ipykernel.zmqshell.ZMQInteractiveShell object at 0x7fbffab11940>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/IPython/core/interactiveshell.py", line 2936, in _run_cell
+    return runner(coro)
+           │      └ <coroutine object InteractiveShell.run_cell_async at 0x7fbfc52d2740>
+           └ <function _pseudo_sync_runner at 0x7fbff96bdb80>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/IPython/core/async_helpers.py", line 129, in _pseudo_sync_runner
+    coro.send(None)
+    │    └ <method 'send' of 'coroutine' objects>
+    └ <coroutine object InteractiveShell.run_cell_async at 0x7fbfc52d2740>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/IPython/core/interactiveshell.py", line 3135, in run_cell_async
+    has_raised = await self.run_ast_nodes(code_ast.body, cell_name,
+                       │    │             │        │     └ '/var/folders/t0/fw3jvl196_v78v94hzhxhpgw0000gn/T/ipykernel_16752/2776101879.py'
+                       │    │             │        └ [<_ast.FunctionDef object at 0x7fbfc5222460>, <_ast.Expr object at 0x7fbfc5275be0>]
+                       │    │             └ <_ast.Module object at 0x7fbfc478af70>
+                       │    └ <function InteractiveShell.run_ast_nodes at 0x7fbff96cf4c0>
+                       └ <ipykernel.zmqshell.ZMQInteractiveShell object at 0x7fbffab11940>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/IPython/core/interactiveshell.py", line 3338, in run_ast_nodes
+    if await self.run_code(code, result, async_=asy):
+             │    │        │     │              └ False
+             │    │        │     └ <ExecutionResult object at 7fbfe9771b20, execution_count=27 error_before_exec=None error_in_exec=None info=<ExecutionInfo obj...
+             │    │        └ <code object <cell line: 11> at 0x7fbfe977af50, file "/var/folders/t0/fw3jvl196_v78v94hzhxhpgw0000gn/T/ipykernel_16752/277610...
+             │    └ <function InteractiveShell.run_code at 0x7fbff96cf550>
+             └ <ipykernel.zmqshell.ZMQInteractiveShell object at 0x7fbffab11940>
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/IPython/core/interactiveshell.py", line 3398, in run_code
+    exec(code_obj, self.user_global_ns, self.user_ns)
+         │         │    │               │    └ {'__name__': '__main__', '__doc__': 'Automatically created module for IPython interactive environment', '__package__': None, ...
+         │         │    │               └ <ipykernel.zmqshell.ZMQInteractiveShell object at 0x7fbffab11940>
+         │         │    └ <property object at 0x7fbff9699900>
+         │         └ <ipykernel.zmqshell.ZMQInteractiveShell object at 0x7fbffab11940>
+         └ <code object <cell line: 11> at 0x7fbfe977af50, file "/var/folders/t0/fw3jvl196_v78v94hzhxhpgw0000gn/T/ipykernel_16752/277610...
+
+> File "/var/folders/t0/fw3jvl196_v78v94hzhxhpgw0000gn/T/ipykernel_16752/2776101879.py", line 11, in <cell line: 11>
+    make_tensor()
+    └ <function make_tensor at 0x7fbfc4586700>
+
+  File "/var/folders/t0/fw3jvl196_v78v94hzhxhpgw0000gn/T/ipykernel_16752/2776101879.py", line 9, in make_tensor
+    res = pad_sequences(output_array)
+          │             └ array([ 0.01543992, -0.15983614,  0.61529845, ...,  0.        ,
+          │                       0.        ,  0.        ])
+          └ <function pad_sequences at 0x7fc002c03550>
+
+  File "/Volumes/Environment/conda/miniconda3/envs/defaultenv/lib/python3.8/site-packages/keras/utils/data_utils.py", line 1015, in pad_sequences
+    raise ValueError('`sequences` must be a list of iterables. '
+
+ValueError: `sequences` must be a list of iterables. Found non-iterable: 0.015439916402101517
